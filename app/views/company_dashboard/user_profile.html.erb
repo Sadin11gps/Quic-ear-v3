@@ -1,0 +1,50 @@
+<style type="text/css">
+    body{padding-top:30px;}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://robohash.org/<%= @user.name %>" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            <%= @user.name %></h4>
+                            <% if @user.available %>
+                                <i class="glyphicon glyphicon-ok" style="float:right;color:green"></i>
+                            <% else %>
+                                <i class="glyphicon glyphicon-remove" style="float:right;color:red"></i>
+                            <% end %>
+                        <small><cite title="San Francisco, USA"><%= @user.preferred_location %><i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-phone-alt"></i><%= @user.mob_num %>
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i><%= @user.preferred_jobs.split("/").join(",") %>
+                            <br />
+                            <i class="glyphicon glyphicon-star"></i><%= @user.ratings %>
+                            <br />
+                            <i class="glyphicon glyphicon-king"></i><%= @user.experience %> task(s) completed
+                        </p>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">
+                                Hire Him!
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,66 @@
+<style type="text/css">
+    .notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    cursor:pointer;
+    width:50%;
+}
+.notice:hover{
+    background-color:#efefef;
+}
+.notice-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+.notice-lg {
+    padding: 35px;
+    font-size: large;
+}
+.notice-success {
+    border-color: #80D651;
+}
+.notice-success>strong {
+    color: #80D651;
+}
+.notice-info {
+    border-color: #45ABCD;
+}
+.notice-info>strong {
+    color: #45ABCD;
+}
+.notice-warning {
+    border-color: #FEAF20;
+}
+.notice-warning>strong {
+    color: #FEAF20;
+}
+.notice-danger {
+    border-color: #d73814;
+}
+.notice-danger>strong {
+    color: #d73814;
+}
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+</style>
+
+<div class="container">
+	<% @job_posts.each do |job|%>
+	 <div class="notice notice-success notice-lg">
+            <strong><%= job.job_type %></strong><br/> Description <%= job.job_description %> <br/> Location <%= job.job_location %>
+            <a href="/candidate_matches" class="btn btn-primary" >Click to view Potential Candidates</a>
+            <% session[:jobid]=job.id %>
+     </div>
+    <%end%>
+</div>
+	

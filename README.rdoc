@@ -1,0 +1,17 @@
+== MicroJobs
+
+This is a portal for Short term jobs developed for FreedomHack'15. 
+
+This application forms a connecter between a Job seeker and a Job provider.
+
+A Job provider will be able to create a JobPost, customised based on his need. Once created, he can also view potential candidates with matching skills, experience and rating through this application.
+
+A Job seeker will be able to look for jobs based on his preferences and if found suitable he can apply for the same.
+
+A JobSeeker can apply to a certain JobPost by just one click. An E-mail will be sent on behalf of the JobSeeker to the concerned company showcasing his interest.
+
+A JobProvider can contact a PotentialCandidate for the job by just one Click. A SMS will be roled out to the JobSeeker regarding the company's Interest on him.
+
+Once a suitable match is found, the user is employeed for the work and is marked employeed for the certain Duration that the job requires.
+
+This application is mainly created to connect Jobseeker,JobProvider in Rural Villages, Towns of India. 

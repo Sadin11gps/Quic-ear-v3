@@ -1,0 +1,133 @@
+<style type="text/css">
+    .notice {
+    padding: 15px;
+    background-color: #fafafa;
+    border-left: 6px solid #7f7f84;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+            box-shadow: 0 5px 8px -6px rgba(0,0,0,.2);
+    cursor:pointer;
+    width:50%;
+}
+.notice:hover{
+    background-color:#efefef;
+}
+.notice-sm {
+    padding: 10px;
+    font-size: 80%;
+}
+.notice-lg {
+    padding: 35px;
+    font-size: large;
+}
+.notice-success {
+    border-color: #80D651;
+}
+.notice-success>strong {
+    color: #80D651;
+}
+.notice-info {
+    border-color: #45ABCD;
+}
+.notice-info>strong {
+    color: #45ABCD;
+}
+.notice-warning {
+    border-color: #FEAF20;
+}
+.notice-warning>strong {
+    color: #FEAF20;
+}
+.notice-danger {
+    border-color: #d73814;
+}
+.notice-danger>strong {
+    color: #d73814;
+}
+</style>
+<div class="container">
+    <% @matches.each do |job| %>
+        <div class="notice notice-success notice-lg">
+            <strong><%= job.job_type %></strong>job at <%= job.job_location %> from <%= job.job_start_date%> to <%= job.job_end_date%>
+        </div>
+                <div class="contact-card">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://robohash.org/<%= job.job_type %>" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            <%= job.job_type %></h4>
+                            
+                                <i class="glyphicon glyphicon-ok" style="float:right;color:green"></i>
+                        <small><cite title="San Francisco, USA"><%= job.job_location %><i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-phone-alt"></i><%= job.job_description %>
+                            <br />
+                            <i class="glyphicon glyphicon-thumbs-up"></i><%= job.job_start_date %>
+                            <br />
+                            <i class="glyphicon glyphicon-thumbs-down"></i><%= job.job_end_date %>
+                            <br />
+                            <i class="glyphicon glyphicon-king"></i><%= job.job_location %> 
+                        </p>
+                        <p id="email" hidden> <%= Company.find(job.company_id).email %> </p>
+
+                        <p id="subject" hidden> <%= @user.name %> of <%= @user.mob_num %> is interested in your job of <%= job.job_type%> at <%= job.job_location%> </p>
+
+                        <p id="msg" hidden> Hi,<br><br> This is <%= @user.name %>,reachable at <strong><%= @user.mob_num%></strong>. I am glad to know that there is opening in your concern. I would like to apply for the same.<br><br>Thanks & Regards,<br><%= @user.name %>.</p>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary" onclick="subscribe('<%= Company.find(job.company_id).email %>','<%= @user.name %> of <%= @user.mob_num %> is interested in your job of <%= job.job_type%> at <%= job.job_location%>','Hi,<br><br> This is <%= @user.name %>,reachable at <strong><%= @user.mob_num%></strong>. I am glad to know that there is opening in your concern. I would like to apply for the same.<br><br>Thanks & Regards,<br><%= @user.name %>.')">
+                                Apply now !
+                            </button>
+                        </div>
+              
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <% end %>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(".contact-card").hide();
+        $(".notice").on("click",function(){
+            $(".contact-card").slideUp();
+            $(this).next().slideDown();
+        });
+    });
+
+                            function subscribe(sub_email,subject,msg){
+                                console.log(subject);
+                                        //finish loading in 3s
+                                        $.ajax({
+                                          type: 'POST',
+                                          url: 'https://mandrillapp.com/api/1.0/messages/send.json',
+                                          data: {
+                                            "key": "M3hKFIUH5OkrLHpyKGTkOQ",
+                                            "message": {
+                                              "from_email": "no_reply@microjobs.in",
+                                              "to": [
+                                                  {
+                                                    "email": sub_email,
+                                                    "type": "to"
+                                                  }
+                                                ],
+                                              "autotext": "true",
+                                              "subject": subject,
+                                              "html": msg
+                                            }
+                                          }
+                                         }).success(function(resp){
+                                            console.log(resp);
+                                         });
+                                }
+                        
+</script>

@@ -1,0 +1,46 @@
+<style type="text/css">
+    body{padding-top:30px;}
+
+.glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+small {
+display: block;
+line-height: 1.428571429;
+color: #999;
+}
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="http://robohash.org/<%= @job.job_type %>" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            <%= @job.job_type %></h4>
+                                <i class="glyphicon glyphicon-ok" style="float:right;color:green"></i>
+                        <small><cite title="San Francisco, USA"><%= @job.job_location %><i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-phone-alt"></i><%= @job.job_description %>
+                            <br />
+                            <i class="glyphicon glyphicon-thumbs-up"></i><%= @job.job_start_date %>
+                            <br />
+                            <i class="glyphicon glyphicon-thumbs-down"></i><%= @job.job_end_date %>
+                            <br />
+                            <i class="glyphicon glyphicon-king"></i><%= @job.job_location %> 
+                        </p>
+                        <!-- Split button -->
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary">
+                                Apply now !
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

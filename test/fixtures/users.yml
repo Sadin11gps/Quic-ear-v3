@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  mob_num: 1
+  available: false
+  preferred_jobs: MyString
+  password_digest: MyString
+  preferred_location: MyString
+  experience: 9.99
+  ratings: 9.99
+
+two:
+  name: MyString
+  mob_num: 1
+  available: false
+  preferred_jobs: MyString
+  password_digest: MyString
+  preferred_location: MyString
+  experience: 9.99
+  ratings: 9.99
