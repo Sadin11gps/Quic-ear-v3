@@ -1,7 +1,9 @@
 FROM ruby:2.3-slim
 
-# Basic dependencies
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+# Archive repo for old Debian Buster
+RUN echo "deb http://archive.debian.org/debian buster main" > /etc/apt/sources.list && \
+    echo "deb http://archive.debian.org/debian-security buster/updates main" >> /etc/apt/sources.list && \
+    apt-get update -qq && apt-get install -y build-essential libpq-dev
 
 WORKDIR /app
 
@@ -12,11 +14,9 @@ RUN bundle install --jobs 20 --retry 5
 
 COPY . /app
 
-# Precompile assets
+# Assets precompile (ignore error if not needed)
 RUN bundle exec rake assets:precompile RAILS_ENV=production || true
 
-# Expose port
 EXPOSE 3000
 
-# Start server
 CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0", "-p", "3000"]
